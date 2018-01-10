@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=/home/kkowalski/Workspace/CubeMXTest/NotSoSoftUart_STM32/Inc
+HeaderPath=/home/kkowalski/Workspace/NotSoSoftUart_STM32/code_gen/Inc
 HeaderFiles=gpio.h;FreeRTOSConfig.h;tim.h;stm32f4xx_it.h;stm32_assert.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=/home/kkowalski/Workspace/CubeMXTest/NotSoSoftUart_STM32/Src
+SourcePath=/home/kkowalski/Workspace/NotSoSoftUart_STM32/code_gen/Src
 SourceFiles=gpio.c;freertos.c;tim.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;stm32f4xx_hal_timebase_TIM.c;main.c;
 
 [PreviousLibFiles]

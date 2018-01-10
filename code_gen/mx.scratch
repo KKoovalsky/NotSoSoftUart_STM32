@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>/home/kkowalski/Workspace/CubeMXTest/NotSoSoftUart_STM32/\NotSoSoftUart_STM32</ProjectName>
+<ProjectName>/home/kkowalski/Workspace/NotSoSoftUart_STM32/code_gen/\NotSoSoftUart_STM32</ProjectName>
 <CMSIS>Drivers/CMSIS</CMSIS>
 <HAL_Driver>/home/kkowalski/STM32Cube/Repository//STM32Cube_FW_F4_V1.18.0/Drivers/CMSIS</HAL_Driver>
 
