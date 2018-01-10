@@ -50,9 +50,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "tim.h"
 
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
 
 /* TIM2 init function */
 void MX_TIM2_Init(void)
@@ -80,9 +78,7 @@ void MX_TIM2_Init(void)
 
 }
 
-/* USER CODE BEGIN 1 */
 
-/* USER CODE END 1 */
 
 /**
   * @}
