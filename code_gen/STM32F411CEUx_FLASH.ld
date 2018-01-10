@@ -1,0 +1,1 @@
+../drv/STM32F411CEUx_FLASH.ld
