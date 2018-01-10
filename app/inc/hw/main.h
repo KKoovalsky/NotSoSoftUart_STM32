@@ -64,7 +64,10 @@
 /* Includes ------------------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 
-#define D5_SOFTUART_OUT_Pin LL_GPIO_PIN_3
+#define D3_SOFTUART_IN_Pin LL_GPIO_PIN_3
+#define D3_SOFTUART_IN_GPIO_Port GPIOB
+#define D3_SOFTUART_IN_EXTI_IRQn EXTI3_IRQn
+#define D5_SOFTUART_OUT_Pin LL_GPIO_PIN_4
 #define D5_SOFTUART_OUT_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */

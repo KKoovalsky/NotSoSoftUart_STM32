@@ -124,6 +124,18 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+* @brief This function handles EXTI line3 interrupt.
+*/
+void EXTI3_IRQHandler(void)
+{
+  	if (LL_EXTI_IsActiveFlag_0_31(LL_EXTI_LINE_3) != RESET)
+  	{
+	    LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_3);
+  	}
+}
+
+
+/**
  * @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
  */
 void TIM1_UP_TIM10_IRQHandler(void)
