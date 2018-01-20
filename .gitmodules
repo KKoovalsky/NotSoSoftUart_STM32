@@ -1,0 +1,6 @@
+[submodule "cmake"]
+	path = cmake
+	url = https://github.com/KKoovalsky/stm32-cmake
+[submodule "code_gen/Drivers/NotSoSoftUart"]
+	path = code_gen/Drivers/NotSoSoftUart
+	url = https://github.com/KKoovalsky/NotSoSoftUart.git
