@@ -52,5 +52,12 @@ FILE(GLOB PROJECT_SOURCES
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${PROJECT_SOURCES} ${CMSIS_SOURCES} ${FreeRTOS_SOURCES} ${STM32LL_SOURCES} 
 	${STM32HAL_SOURCES})
 
+# Add "tags" target and make my_project depending on this target.
+set_source_files_properties(tags PROPERTIES GENERATED true)
+add_custom_target(tags
+    COMMAND ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+add_dependencies(${CMAKE_PROJECT_NAME} tags)
+
 STM32_SET_TARGET_PROPERTIES(${CMAKE_PROJECT_NAME})
 STM32_ADD_HEX_BIN_TARGETS(${CMAKE_PROJECT_NAME})
