@@ -74,7 +74,6 @@ int main(void)
 
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
-	MX_TIM2_Init();
 
 	/* Call init function for freertos objects (in freertos.c) */
 	MX_FREERTOS_Init();
