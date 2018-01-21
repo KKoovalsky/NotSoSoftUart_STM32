@@ -3,6 +3,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 PROJECT(stm32-NotSoSoftUart)
 ENABLE_LANGUAGE(ASM)
 
+# Generate compilation database for YcmCompleteMe
+SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Set variables used by ObKo-stm32cmake 
 SET(TOOLCHAIN_PREFIX "$ENV{HOME}/ARMToolchain")
 SET(STM32_CHIP	"STM32F411CE")
