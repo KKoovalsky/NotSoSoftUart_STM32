@@ -50,6 +50,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os.h"
+#include "nssu_task.h"
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId defaultTaskHandle;
@@ -76,7 +77,8 @@ void MX_FREERTOS_Init(void) {
 	/* definition and creation of defaultTask */
 	osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
 	defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-
+	
+	xTaskCreate(nssu_task, "nssu", 128, NULL, osPriorityNormal, NULL);
 	/* add threads, ... */
 
 	/* add queues, ... */
