@@ -4,3 +4,6 @@
 [submodule "code_gen/Drivers/NotSoSoftUart"]
 	path = code_gen/Drivers/NotSoSoftUart
 	url = https://github.com/KKoovalsky/NotSoSoftUart.git
+[submodule "tests/minunit"]
+	path = tests/minunit
+	url = git@github.com:KKoovalsky/minunit.git
