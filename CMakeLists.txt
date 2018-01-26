@@ -14,7 +14,31 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
 SET(CMAKE_BUILD_TYPE Debug)
 
+# Set the lists of user files
+SET(SRC_DIR "${CMAKE_SOURCE_DIR}/app/src")
+SET(HW_SRC_DIR "${CMAKE_SOURCE_DIR}/app/src/hw")
+SET(TASKS_SRC_DIR "${CMAKE_SOURCE_DIR}/app/src/tasks")
+
+SET(INC_DIR "${CMAKE_SOURCE_DIR}/app/inc")
+SET(HW_INC_DIR "${CMAKE_SOURCE_DIR}/app/inc/hw")
+SET(TASKS_INC_DIR "${CMAKE_SOURCE_DIR}/app/inc/tasks")
+
+FIND_PACKAGE(NotSoSoftUart REQUIRED)
+
 IF(UNIT_TEST_LOCAL)
+	
+	INCLUDE("${CMAKE_SOURCE_DIR}/cmake/unit_test_local.cmake")
+
+	INCLUDE_DIRECTORIES(
+		${INC_DIR}
+		${TEST_INCLUDE_DIRS}
+		${NotSoSoftUart_INCLUDE_DIRS}
+	)
+	
+	ADD_EXECUTABLE(${CMAKE_PROJECT_NAME}
+		${TEST_SOURCES}
+		${NotSoSoftUart_SOURCES}
+	)
 
 ELSE()
 	# Set variables used by ObKo-stm32cmake 
@@ -34,16 +58,6 @@ ELSE()
 
 	FIND_PACKAGE(STM32LL COMPONENTS gpio exti tim REQUIRED)
 	FIND_PACKAGE(STM32HAL COMPONENTS tim REQUIRED)
-	FIND_PACKAGE(NotSoSoftUart REQUIRED)
-
-	# Set the lists of user files
-	SET(SRC_DIR "${CMAKE_SOURCE_DIR}/app/src")
-	SET(HW_SRC_DIR "${CMAKE_SOURCE_DIR}/app/src/hw")
-	SET(TASKS_SRC_DIR "${CMAKE_SOURCE_DIR}/app/src/tasks")
-
-	SET(INC_DIR "${CMAKE_SOURCE_DIR}/app/inc")
-	SET(HW_INC_DIR "${CMAKE_SOURCE_DIR}/app/inc/hw")
-	SET(TASKS_INC_DIR "${CMAKE_SOURCE_DIR}/app/inc/tasks")
 
 	INCLUDE_DIRECTORIES(
 		${INC_DIR}
