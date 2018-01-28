@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>/home/kkowalski/Workspace/NotSoSoftUart_STM32/code_gen/\NotSoSoftUart_STM32</ProjectName>
+<ProjectName>/home/kacper/Workspace/NSSU_STM32/code_gen/\NotSoSoftUart_STM32</ProjectName>
 <CMSIS>Drivers/CMSIS</CMSIS>
-<HAL_Driver>/home/kkowalski/STM32Cube/Repository//STM32Cube_FW_F4_V1.18.0/Drivers/CMSIS</HAL_Driver>
+<HAL_Driver>/home/kacper/STM32Cube/Repository//STM32Cube_FW_F4_V1.18.0/Drivers/CMSIS</HAL_Driver>
 
 <Toolchain>Makefile</Toolchain>
 <Version>0</Version>
@@ -82,22 +82,22 @@
                                                     <name>Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c</name>
                                             </file>
                                             <file>
-                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/tasks.c</name>
-                                            </file>
-                                            <file>
-                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/queue.c</name>
-                                            </file>
-                                            <file>
-                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/timers.c</name>
+                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/event_groups.c</name>
                                             </file>
                                             <file>
                                                     <name>Middlewares/Third_Party/FreeRTOS/Source/croutine.c</name>
                                             </file>
                                             <file>
-                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/event_groups.c</name>
+                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/timers.c</name>
+                                            </file>
+                                            <file>
+                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/tasks.c</name>
                                             </file>
                                             <file>
                                                     <name>Middlewares/Third_Party/FreeRTOS/Source/list.c</name>
+                                            </file>
+                                            <file>
+                                                    <name>Middlewares/Third_Party/FreeRTOS/Source/queue.c</name>
                                             </file>
                                             <file>
                                                     <name>Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c</name>
