@@ -38,8 +38,8 @@
 #include "nss_uart.h"
 
 /* External variables --------------------------------------------------------*/
-
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim3;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
@@ -153,5 +153,15 @@ void TIM1_UP_TIM10_IRQHandler(void)
 void TIM2_IRQHandler(void)
 {
 	handle_nssu_tim_overflow();
+}
+
+/**
+ * @brief This function handles TIM3 global interrupt.
+ */
+void TIM3_IRQHandler(void)
+{
+
+	HAL_TIM_IRQHandler(&htim3);
+
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

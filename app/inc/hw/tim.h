@@ -55,11 +55,15 @@ extern "C" {
 
 	/* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_ll_tim.h"
+#include "stm32f4xx_hal.h"
 #include "main.h"
+
+	extern TIM_HandleTypeDef htim3;
 
 	extern void _Error_Handler(char *, int);
 
 	void MX_TIM2_Init(void);
+	void MX_TIM3_Init(void);
 
 #ifdef __cplusplus
 }
