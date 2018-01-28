@@ -5,4 +5,5 @@ bin/*
 !bin/.gitkeep
 tags
 compile_commands.json
+code_gen_temp
 *.swp
