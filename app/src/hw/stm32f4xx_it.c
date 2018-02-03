@@ -36,6 +36,7 @@
 #include "stm32f4xx_it.h"
 #include "cmsis_os.h"
 #include "nss_uart.h"
+#include "nss_uart_port.h"
 
 /* External variables --------------------------------------------------------*/
 extern TIM_HandleTypeDef htim1;
@@ -132,7 +133,7 @@ void EXTI3_IRQHandler(void)
   	if (LL_EXTI_IsActiveFlag_0_31(LL_EXTI_LINE_3) != RESET)
   	{
 	    LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_3);
-		handle_nssu_pin_change();
+		handle_nssu_rx_pin_change();
   	}
 }
 
@@ -152,7 +153,7 @@ void TIM1_UP_TIM10_IRQHandler(void)
  */
 void TIM2_IRQHandler(void)
 {
-	handle_nssu_tim_overflow();
+	handle_nssu_rx_tim_overflow();
 }
 
 /**
@@ -160,8 +161,6 @@ void TIM2_IRQHandler(void)
  */
 void TIM3_IRQHandler(void)
 {
-
-	HAL_TIM_IRQHandler(&htim3);
-
+	handle_nssu_tx_tim_overflow();
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
