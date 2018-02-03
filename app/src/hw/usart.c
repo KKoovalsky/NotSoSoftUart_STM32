@@ -1,8 +1,8 @@
 /**
  ******************************************************************************
- * File Name          : gpio.c
+ * File Name          : USART.c
  * Description        : This file provides code for the configuration
- *                      of all used GPIO pins.
+ *                      of the USART instances.
  ******************************************************************************
  * This notice applies to any and all portions of this file
  * that are not between comment pairs USER CODE BEGIN and
@@ -48,57 +48,44 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
+#include "usart.h"
+
 #include "gpio.h"
-/*----------------------------------------------------------------------------*/
-/* Configure GPIO                                                             */
-/*----------------------------------------------------------------------------*/
-/** Configure pins as 
- * Analog 
- * Input 
- * Output
- * EVENT_OUT
- * EXTI
- */
-void MX_GPIO_Init(void)
+
+/* USART1 init function */
+
+void MX_USART1_UART_Init(void)
 {
+	LL_USART_InitTypeDef USART_InitStruct;
 
 	LL_GPIO_InitTypeDef GPIO_InitStruct;
-	LL_EXTI_InitTypeDef EXTI_InitStruct;
+	/* Peripheral clock enable */
+	LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
 
-	/* GPIO Ports Clock Enable */
-	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
-	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
-
-  	/**/
-  	LL_GPIO_ResetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
-
-	/**/
-	LL_SYSCFG_SetEXTISource(LL_SYSCFG_EXTI_PORTB, LL_SYSCFG_EXTI_LINE3);
-
-	/**/
-	EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_3;
-	EXTI_InitStruct.LineCommand = ENABLE;
-	EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
-	EXTI_InitStruct.Trigger = LL_EXTI_TRIGGER_RISING_FALLING;
-	LL_EXTI_Init(&EXTI_InitStruct);
-
-	/**/
-	LL_GPIO_SetPinPull(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin, LL_GPIO_PULL_NO);
-
-	/**/
-	LL_GPIO_SetPinMode(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin, LL_GPIO_MODE_INPUT);
-
-	/**/
-	GPIO_InitStruct.Pin = D5_SOFTUART_OUT_Pin;
-	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-	GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+	/**USART1 GPIO Configuration  
+	  PA9   ------> USART1_TX
+	  PA10   ------> USART1_RX 
+	 */
+	GPIO_InitStruct.Pin = D8_UART_TX_Pin|D2_UART_RX_Pin;
+	GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+	GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
 	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-	GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-	LL_GPIO_Init(D5_SOFTUART_OUT_GPIO_Port, &GPIO_InitStruct);
+	GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
+	GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
+	LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  	/* EXTI interrupt init*/
-	NVIC_SetPriority(EXTI3_IRQn, 5);
-	NVIC_EnableIRQ(EXTI3_IRQn);
+	USART_InitStruct.BaudRate = 115200;
+	USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
+	USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
+	USART_InitStruct.Parity = LL_USART_PARITY_NONE;
+	USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+	USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
+	USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
+	LL_USART_Init(USART1, &USART_InitStruct);
+
+	LL_USART_ConfigAsyncMode(USART1);
+
+	LL_USART_Enable(USART1);
 
 }
 
