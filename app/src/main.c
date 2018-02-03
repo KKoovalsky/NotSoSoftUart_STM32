@@ -52,6 +52,7 @@
 #include "cmsis_os.h"
 #include "tim.h"
 #include "gpio.h"
+#include "nssu_task.h"
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -63,7 +64,6 @@ void MX_FREERTOS_Init(void);
 /* Private function prototypes -----------------------------------------------*/
 int main(void)
 {
-
 	/* MCU Configuration----------------------------------------------------------*/
 
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -74,8 +74,9 @@ int main(void)
 
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
-	MX_TIM2_Init();
-	MX_TIM3_Init();
+
+	// Initialize NotSoSoftUart
+	create_nssu_task();
 
 	/* Call init function for freertos objects (in freertos.c) */
 	MX_FREERTOS_Init();
