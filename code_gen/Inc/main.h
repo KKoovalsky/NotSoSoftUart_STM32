@@ -58,6 +58,7 @@
 #include "stm32f4xx_ll_pwr.h"
 #include "stm32f4xx_ll_dma.h"
 #include "stm32f4xx_ll_tim.h"
+#include "stm32f4xx_ll_usart.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_ll_gpio.h"
 
@@ -68,6 +69,10 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define D8_UART_TX_Pin LL_GPIO_PIN_9
+#define D8_UART_TX_GPIO_Port GPIOA
+#define D2_UART_RX_Pin LL_GPIO_PIN_10
+#define D2_UART_RX_GPIO_Port GPIOA
 #define D3_SOFTUART_IN_Pin LL_GPIO_PIN_3
 #define D3_SOFTUART_IN_GPIO_Port GPIOB
 #define D3_SOFTUART_IN_EXTI_IRQn EXTI3_IRQn

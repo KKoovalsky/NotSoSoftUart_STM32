@@ -9,6 +9,7 @@
 
 <filestoremove>
 	<file>
+	   		<name>Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</name>
 	</file>
 </filestoremove>
 
@@ -32,7 +33,7 @@
     <usedDebug>true</usedDebug>
     	<debugprobe></debugprobe>
     <optimization></optimization>
-    <icfloc>1</icfloc>
+    <icfloc>0</icfloc>
     <Adefines>
         <define></define>
     </Adefines>   
@@ -127,6 +128,9 @@
 							<name>Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dma.c</name>
 						</file>
 						<file>
+							<name>Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usart.c</name>
+						</file>
+						<file>
 							<name>Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rcc.c</name>
 						</file>
 						<file>
@@ -197,6 +201,10 @@
                                 </file>
 
                                 <file>
+                                 <name>Src/usart.c</name>
+                                </file>
+
+                                <file>
                                  <name>Src/stm32f4xx_it.c</name>
                                 </file>
 
@@ -225,6 +233,15 @@
                     <name>tim.c</name>
                                     <file>
                                             <name>Src/tim.c</name>
+                                    </file>
+                    </group>
+        </group>
+               <group>
+        <name>Src</name>
+                    <group>
+                    <name>usart.c</name>
+                                    <file>
+                                            <name>Src/usart.c</name>
                                     </file>
                     </group>
         </group>

@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : gpio.c
+  * File Name          : USART.h
   * Description        : This file provides code for the configuration
-  *                      of all used GPIO pins.
+  *                      of the USART instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -46,73 +46,38 @@
   *
   ******************************************************************************
   */
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __usart_H
+#define __usart_H
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "gpio.h"
-/* USER CODE BEGIN 0 */
+#include "stm32f4xx_ll_usart.h"
+#include "stm32f4xx_ll_rcc.h"
+#include "main.h"
 
-/* USER CODE END 0 */
+/* USER CODE BEGIN Includes */
 
-/*----------------------------------------------------------------------------*/
-/* Configure GPIO                                                             */
-/*----------------------------------------------------------------------------*/
-/* USER CODE BEGIN 1 */
+/* USER CODE END Includes */
 
-/* USER CODE END 1 */
+/* USER CODE BEGIN Private defines */
 
-/** Configure pins as 
-        * Analog 
-        * Input 
-        * Output
-        * EVENT_OUT
-        * EXTI
-*/
-void MX_GPIO_Init(void)
-{
+/* USER CODE END Private defines */
 
-  LL_GPIO_InitTypeDef GPIO_InitStruct;
-  LL_EXTI_InitTypeDef EXTI_InitStruct;
+extern void _Error_Handler(char *, int);
 
-  /* GPIO Ports Clock Enable */
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
+void MX_USART1_UART_Init(void);
 
-  /**/
-  LL_GPIO_ResetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
+/* USER CODE BEGIN Prototypes */
 
-  /**/
-  LL_SYSCFG_SetEXTISource(LL_SYSCFG_EXTI_PORTB, LL_SYSCFG_EXTI_LINE3);
+/* USER CODE END Prototypes */
 
-  /**/
-  EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_3;
-  EXTI_InitStruct.LineCommand = ENABLE;
-  EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
-  EXTI_InitStruct.Trigger = LL_EXTI_TRIGGER_RISING_FALLING;
-  LL_EXTI_Init(&EXTI_InitStruct);
-
-  /**/
-  LL_GPIO_SetPinPull(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin, LL_GPIO_PULL_NO);
-
-  /**/
-  LL_GPIO_SetPinMode(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin, LL_GPIO_MODE_INPUT);
-
-  /**/
-  GPIO_InitStruct.Pin = D5_SOFTUART_OUT_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  LL_GPIO_Init(D5_SOFTUART_OUT_GPIO_Port, &GPIO_InitStruct);
-
-  /* EXTI interrupt init*/
-  NVIC_SetPriority(EXTI3_IRQn, 5);
-  NVIC_EnableIRQ(EXTI3_IRQn);
-
+#ifdef __cplusplus
 }
-
-/* USER CODE BEGIN 2 */
-
-/* USER CODE END 2 */
+#endif
+#endif /*__ usart_H */
 
 /**
   * @}
