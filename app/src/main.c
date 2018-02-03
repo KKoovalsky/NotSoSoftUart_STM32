@@ -52,6 +52,7 @@
 #include "cmsis_os.h"
 #include "tim.h"
 #include "gpio.h"
+#include "usart.h"
 #include "nssu_task.h"
 
 /* Private variables ---------------------------------------------------------*/
@@ -77,6 +78,8 @@ int main(void)
 
 	// Initialize NotSoSoftUart
 	create_nssu_task();
+
+	MX_USART1_UART_Init();
 
 	/* Call init function for freertos objects (in freertos.c) */
 	MX_FREERTOS_Init();

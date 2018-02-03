@@ -3,6 +3,7 @@
 #include "task.h"
 #include "nss_uart.h"
 #include "utils.h"
+#include "log.h"
 
 static TaskHandle_t nssu_task_handle;
 
@@ -36,5 +37,6 @@ static void nssu_task(void *params)
 	{
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 		char byte = pop_byte_from_rx_buf();
+		log_byte(byte);
 	}
 }
