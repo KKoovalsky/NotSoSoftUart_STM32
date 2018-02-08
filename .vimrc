@@ -21,3 +21,6 @@ set numberwidth=2
 " Set colors for the bar
 set t_Co=256
 highlight LineNr term=bold cterm=NONE ctermfg=lightyellow ctermbg=darkgrey gui=NONE guifg=DarkGrey guibg=NONE
+
+" Make split always equal
+set equalalways
