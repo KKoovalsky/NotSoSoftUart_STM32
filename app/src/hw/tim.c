@@ -47,13 +47,6 @@
  ******************************************************************************
  */
 
-#define CPU_CLK_FREQ			96000000
-#define NSSU_BAUD_RATE			9600
-#define NSSU_BITS_PER_BAUD		10
-#define NSSU_FREQ				( (NSSU_BAUD_RATE) * (NSSU_BITS_PER_BAUD) )
-#define NSSU_PRESCALING			( (CPU_CLK_FREQ) / (NSSU_FREQ) )
-#define NSSU_REG_VAL_STM32		( (NSSU_PRESCALING) - 1 )
-
 /* Includes ------------------------------------------------------------------*/
 #include "tim.h"
 
@@ -69,7 +62,7 @@ void MX_TIM2_Init(void)
 	NVIC_SetPriority(TIM2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
 	NVIC_EnableIRQ(TIM2_IRQn);
 
-	TIM_InitStruct.Prescaler = NSSU_REG_VAL_STM32;
+	TIM_InitStruct.Prescaler = 0;
 	TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
 	TIM_InitStruct.Autoreload = 0;
 	TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
