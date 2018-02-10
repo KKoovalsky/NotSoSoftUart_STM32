@@ -74,9 +74,12 @@ void nssu_set_tx_pin_state(int state)
 void nssu_tx_tim_isr_enable()
 {
 	// Clear the counter's value
-	LL_TIM_SetCounter(TIM_TX_INST, 0);
-	LL_TIM_EnableCounter(TIM_TX_INST);
-	LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
+	if(!LL_TIM_IsEnabledIT_UPDATE(TIM_TX_INST))
+	{
+		LL_TIM_SetCounter(TIM_TX_INST, 0);
+		LL_TIM_EnableCounter(TIM_TX_INST);
+		LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
+	}
 }
 
 void nssu_tx_tim_isr_disable()
