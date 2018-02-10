@@ -132,7 +132,7 @@ void EXTI3_IRQHandler(void)
   	if (LL_EXTI_IsActiveFlag_0_31(LL_EXTI_LINE_3) != RESET)
   	{
 	    LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_3);
-		handle_nssu_rx_pin_change();
+		nssu_handle_rx_pin_edge();
   	}
 }
 
@@ -160,7 +160,7 @@ void TIM2_IRQHandler(void)
  */
 void TIM3_IRQHandler(void)
 {
-	handle_nssu_tx_tim_overflow();
+	nssu_handle_tx_tim_overflow();
 	LL_TIM_ClearFlag_UPDATE(TIM3);
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
