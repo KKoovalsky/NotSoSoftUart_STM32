@@ -27,6 +27,11 @@ void nssu_init()
 
 	LL_TIM_SetAutoReload(TIM_RX_INST, 0xFFFFFFFF);
 	LL_TIM_SetAutoReload(TIM_TX_INST, NSSU_AUTO_RELOAD);
+
+	// Enable EXTI interrupt for handling on slope event
+	LL_EXTI_EnableIT_0_31(EXTI_RX_LINE_INST);
+	LL_EXTI_EnableRisingTrig_0_31(EXTI_RX_LINE_INST);
+	LL_EXTI_EnableFallingTrig_0_31(EXTI_RX_LINE_INST);
 }
 
 void nssu_rx_timer_start()
