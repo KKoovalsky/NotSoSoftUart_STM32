@@ -170,6 +170,7 @@ Does the same thing like `nssu_rx_timer_start`, but additionally enables the int
 ```
 LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
 ```
+Instructions inside function are executed only when the TX timer interrupt is disabled.
 
 ---
 
