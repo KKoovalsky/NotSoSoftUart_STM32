@@ -66,7 +66,7 @@ void MX_TIM2_Init(void)
 	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
 
 	/* TIM2 interrupt Init */
-	NVIC_SetPriority(TIM2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),5, 0));
+	NVIC_SetPriority(TIM2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
 	NVIC_EnableIRQ(TIM2_IRQn);
 
 	TIM_InitStruct.Prescaler = NSSU_REG_VAL_STM32;
