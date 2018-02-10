@@ -73,6 +73,8 @@ LL_EXTI_EnableFallingTrig_0_31(EXTI_RX_LINE_INST);
 
 Functions which initialize `HAL` library and `GPIOs` are called earlier, in `main` function.
 
+---
+
 #### `void nssu_rx_timer_start()`
 
 Here the counter value is cleared and the counter is enabled:
@@ -81,6 +83,8 @@ LL_TIM_SetCounter(TIM_RX_INST, 0);
 LL_TIM_EnableCounter(TIM_RX_INST);
 ```
 
+---
+
 #### `void nssu_rx_timer_stop()`
 
 This function simply stops the counter:
@@ -88,9 +92,13 @@ This function simply stops the counter:
 LL_TIM_DisableCounter(TIM_RX_INST);
 ```
 
+---
+
 #### `void nssu_rx_timer_restart()`
 
 Calls `nssu_rx_timer_stop` and then `nssu_rx_timer_start` in that order.
+
+---
 
 #### `nssu_get_rx_pin_state()`
 
@@ -99,6 +107,8 @@ Uses LL library to get the pin state:
 ```
 return LL_GPIO_IsInputPinSet(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin);
 ```
+
+---
 
 #### `int nssu_get_num_bits_rcvd()`
 
@@ -140,6 +150,8 @@ Now when e.g. the counter value is equal to `2850` and `COUNTER_TICKS_BIT_DUR = 
 number of bytes received = ( 2850 + ((100 - 80) / 100) * 1000 ) / 1000 = (2850 + 200) / 1000 = 3
 ```
 
+---
+
 #### `void nssu_set_tx_pin_state(int state)`
 
 Sets the TX pin basing on `state` argument:
@@ -150,12 +162,16 @@ else
 	LL_GPIO_ResetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
 ```
 
+---
+
 #### `void nssu_tx_tim_isr_enable()`
 
 Does the same thing like `nssu_rx_timer_start`, but additionally enables the interrupt by:
 ```
 LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
 ```
+
+---
 
 #### `void nssu_tx_tim_isr_disable()`
 
