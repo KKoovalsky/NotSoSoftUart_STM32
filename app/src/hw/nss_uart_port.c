@@ -1,4 +1,3 @@
-#include "nss_uart_port.h"
 #include "nss_uart.h"
 #include "tim.h"
 #include "gpio.h"
@@ -8,13 +7,24 @@
 #define COUNTER_MARGIN_PERCENTAGE      80
 #define COUNTER_BIT_DUR_THRESH         ( 0xFFFFFFFF ) * ( 100 ) / ( COUNTER_MARGIN_PERCENTAGE )
 
-static int bits_rcvd = 0;
+#define CPU_CLK_FREQ			96000000
+#define NSSU_BAUD_RATE			9600
+#define NSSU_PRESCALING			( (CPU_CLK_FREQ) / (NSSU_BAUD_RATE) )
+#define NSSU_AUTO_RELOAD		( (NSSU_PRESCALING) - 1 )
 
+#define COUNTER_TICKS_BIT_DUR			10000
+#define COUNTER_MARGIN_PERCENTAGE		80
+#define COUNTER_BIT_DUR_THRESH			( ( COUNTER_TICKS_BIT_DUR ) * ( COUNTER_MARGIN_PERCENTAGE ) / 100 )
+#define COUNTER_FILL_TO_ROUND			( ( COUNTER_TICKS_BIT_DUR ) - ( COUNTER_BIT_DUR_THRESH ) ) 
 
 void nssu_init()
 {
+	// Enable timers for RX and TX
 	MX_TIM2_Init();
 	MX_TIM3_Init();
+
+	LL_TIM_SetAutoReload(TIM_RX_INST, 0xFFFFFFFF);
+	LL_TIM_SetAutoReload(TIM_TX_INST, NSSU_AUTO_RELOAD);
 }
 
 void nssu_rx_timer_start()
@@ -33,8 +43,8 @@ void nssu_rx_timer_stop()
 
 void nssu_rx_timer_restart()
 {
-	stop_nssu_rx_timer();
-	start_nssu_rx_timer();
+	nssu_rx_timer_stop();
+	nssu_rx_timer_start();
 }
 
 int nssu_get_rx_pin_state()
@@ -44,9 +54,9 @@ int nssu_get_rx_pin_state()
 
 int nssu_get_num_bits_rcvd()
 {
-	int res = bits_rcvd + (LL_TIM_GetCounter(TIM_RX_INST) > COUNTER_BIT_DUR_THRESH ? 1 : 0);
-	bits_rcvd = 0;
-	return res;
+	int ticks = LL_TIM_GetCounter(TIM_RX_INST) + COUNTER_FILL_TO_ROUND;
+	LL_TIM_SetCounter(TIM_RX_INST, 0);
+	return ticks / COUNTER_TICKS_BIT_DUR;
 }
 
 void nssu_set_tx_pin_state(int state)
@@ -71,7 +81,3 @@ void nssu_tx_tim_isr_disable()
 	LL_TIM_DisableCounter(TIM_TX_INST);
 }
 
-void handle_nssu_rx_tim_overflow()
-{
-	bits_rcvd++;
-}
