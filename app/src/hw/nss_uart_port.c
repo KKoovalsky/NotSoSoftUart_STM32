@@ -10,13 +10,14 @@
 
 static int bits_rcvd = 0;
 
-void init_not_so_soft_uart()
+
+void nssu_init()
 {
 	MX_TIM2_Init();
 	MX_TIM3_Init();
 }
 
-void start_nssu_rx_timer()
+void nssu_rx_timer_start()
 {
 	// Clear the counter's value
 	LL_TIM_SetCounter(TIM_RX_INST, 0);
@@ -24,31 +25,31 @@ void start_nssu_rx_timer()
 	LL_TIM_EnableCounter(TIM_RX_INST);
 }
 
-void stop_nssu_rx_timer()
+void nssu_rx_timer_stop()
 {
 	LL_TIM_DisableIT_UPDATE(TIM_RX_INST);
 	LL_TIM_DisableCounter(TIM_RX_INST);
 }
 
-void reset_nssu_rx_timer()
+void nssu_rx_timer_restart()
 {
 	stop_nssu_rx_timer();
 	start_nssu_rx_timer();
 }
 
-int get_nssu_rx_pin_state()
+int nssu_get_rx_pin_state()
 {
 	return LL_GPIO_IsInputPinSet(D3_SOFTUART_IN_GPIO_Port, D3_SOFTUART_IN_Pin);
 }
 
-int get_nssu_bits_rcvd()
+int nssu_get_num_bits_rcvd()
 {
 	int res = bits_rcvd + (LL_TIM_GetCounter(TIM_RX_INST) > COUNTER_BIT_DUR_THRESH ? 1 : 0);
 	bits_rcvd = 0;
 	return res;
 }
 
-void set_nssu_tx_pin_state(int state)
+void nssu_set_tx_pin_state(int state)
 {
 	if(state)
 		LL_GPIO_SetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
@@ -56,7 +57,7 @@ void set_nssu_tx_pin_state(int state)
 		LL_GPIO_ResetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
 }
 
-void enable_tx_tim_isr()
+void nssu_tx_tim_isr_enable()
 {
 	// Clear the counter's value
 	LL_TIM_SetCounter(TIM_TX_INST, 0);
@@ -64,7 +65,7 @@ void enable_tx_tim_isr()
 	LL_TIM_EnableCounter(TIM_TX_INST);
 }
 
-void disable_tx_tim_isr()
+void nssu_tx_tim_isr_disable()
 {
 	LL_TIM_DisableIT_UPDATE(TIM_TX_INST);
 	LL_TIM_DisableCounter(TIM_TX_INST);
