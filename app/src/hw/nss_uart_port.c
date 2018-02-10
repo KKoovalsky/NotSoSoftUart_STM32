@@ -18,6 +18,9 @@
 
 void nssu_init()
 {
+	// Before enabling EXTI interrupt set pin state of TX pin to '1' (default)
+	LL_GPIO_SetOutputPin(D5_SOFTUART_OUT_GPIO_Port, D5_SOFTUART_OUT_Pin);
+
 	// Enable timers for RX and TX
 	MX_TIM2_Init();
 	MX_TIM3_Init();
