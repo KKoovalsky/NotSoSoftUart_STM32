@@ -74,6 +74,8 @@ void MX_TIM2_Init(void)
 
 	LL_TIM_DisableMasterSlaveMode(TIM2);
 
+	LL_TIM_DisableCounter(TIM2);
+	LL_TIM_SetUpdateSource(TIM2, LL_TIM_UPDATESOURCE_COUNTER);
 }
 
 /* TIM3 init function */
