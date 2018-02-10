@@ -55,14 +55,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_ll_tim.h"
-#include "stm32f4xx_hal.h"
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
-
-extern TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN Private defines */
 
