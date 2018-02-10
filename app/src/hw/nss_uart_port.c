@@ -2,10 +2,9 @@
 #include "tim.h"
 #include "gpio.h"
 
-#define TIM_RX_INST		TIM2
-#define TIM_TX_INST		TIM3
-#define COUNTER_MARGIN_PERCENTAGE      80
-#define COUNTER_BIT_DUR_THRESH         ( 0xFFFFFFFF ) * ( 100 ) / ( COUNTER_MARGIN_PERCENTAGE )
+#define TIM_RX_INST			TIM2
+#define TIM_TX_INST			TIM3
+#define EXTI_RX_LINE_INST	LL_EXTI_LINE_3
 
 #define CPU_CLK_FREQ			96000000
 #define NSSU_BAUD_RATE			9600
@@ -29,15 +28,12 @@ void nssu_init()
 
 void nssu_rx_timer_start()
 {
-	// Clear the counter's value
 	LL_TIM_SetCounter(TIM_RX_INST, 0);
-	LL_TIM_EnableIT_UPDATE(TIM_RX_INST);
 	LL_TIM_EnableCounter(TIM_RX_INST);
 }
 
 void nssu_rx_timer_stop()
 {
-	LL_TIM_DisableIT_UPDATE(TIM_RX_INST);
 	LL_TIM_DisableCounter(TIM_RX_INST);
 }
 
@@ -71,8 +67,8 @@ void nssu_tx_tim_isr_enable()
 {
 	// Clear the counter's value
 	LL_TIM_SetCounter(TIM_TX_INST, 0);
-	LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
 	LL_TIM_EnableCounter(TIM_TX_INST);
+	LL_TIM_EnableIT_UPDATE(TIM_TX_INST);
 }
 
 void nssu_tx_tim_isr_disable()
