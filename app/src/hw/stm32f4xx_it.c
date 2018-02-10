@@ -152,6 +152,7 @@ void TIM1_UP_TIM10_IRQHandler(void)
  */
 void TIM2_IRQHandler(void)
 {
+	LL_TIM_ClearFlag_UPDATE(TIM2);
 }
 
 /**
@@ -160,5 +161,6 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
 	handle_nssu_tx_tim_overflow();
+	LL_TIM_ClearFlag_UPDATE(TIM3);
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
